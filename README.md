@@ -30,11 +30,11 @@ scDecipher is tested to work under:
 ```
 * Python 3.8.0
 * Torch 1.12.0
-* Scanpy 1.9.0
-* Anndata 0.8.0
-* R 4.2.2
+* Networkx 2.8.8
+* Scikit-learn 1.2.0
+* OpenNE-PyTorch 4.2.2
 * Numpy 1.23.5
-* Other basic python and r toolkits
+* Other basic python toolkits
 ```
 ### Installation of other dependencies
 * Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
