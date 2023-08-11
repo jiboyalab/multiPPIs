@@ -100,7 +100,7 @@ python -m openne --model deepwalk --dataset ./data/AllNodeEdge.csv --num-paths 1
 
 ## 4，Training and prediction under 5-fold cross-validation
 ```
-python ./src/training.py --path ./data/ --save ./data/ && python ./src/roc_plot.py && python ./src/pr_plot.py
+python ./src/training.py && python ./src/roc_plot.py && python ./src/pr_plot.py
 ```
 
 
