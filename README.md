@@ -78,7 +78,7 @@ python ./src/ACDencoder.py --path ./data/ --save ./data/
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **path** | Path of the assciation data among different biomoleculars|
+| **path** | Path of the protein sequence data|
 | **save** | Save path of the generated data|
 
 
@@ -91,55 +91,25 @@ python -m openne --model deepwalk --dataset ./data/AllNodeEdge.csv --num-paths 1
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **dataset** | Count matrix / normalized count matrix path. |
+| **dataset** | The graph data. |
 | **num-paths** | Number of random walks that starts at each node. |
 | **path-length** | Length of random walk started at each node. |
 | **window** | Window size of skip-gram model.  |
 
 
 
-## 4，prioritize the dominant cell communication assmebly that affected functional states of malignant cells
+## 4，Training and prediction under 5-fold cross-validation
 ```
-python ./src/tutorials3/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --cell_type Malignant --cell_state EMT --dca_rank_result ./output/state_dca_rank_result.csv
-```
-**Arguments**:
-
-| **Arguments** | **Detail** |
-| --- | --- |
-| **count** | Count matrix / normalized count matrix path. |
-| **meta** | Meta data (celltypes annotation) path. |
-| **lr_file** | The final results of LR pairs. |
-| **cell_type** | The specific cell type.  |
-| **cell_state** | [Angiogenesis; Apoptosis; CellCycle; Differentiation; DNAdamage; DNArepair; EMT; Hypoxia; Inflammation; Invasion; Metastasis; Proliferation; Quiescence; Stemness.]  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that affected functional states of malignant cells. |
-
-
-Visualization of results:
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cellstate.png" alt="Editor" width="500">
-</div>
-
-## 5，clinical intervertion altered effect of cell communication on gene expression
-```
-python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P915_matrix.txt --meta ./data/RCC_scRNA_P915_metadata.txt --lr_file ./output/final_lr.csv --gene CD8A --dca_rank_result ./output/P915_CD8A_dca_rank_result.csv --ccc_ratio_result ./output/P915_CD8A_ccc_ratio_result.csv
+python ./src/training.py --path ./data/ --save ./data/ && python ./src/roc_plot.py && python ./src/pr_plot.py
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **count** | Count matrix / normalized count matrix path. |
-| **meta** | Meta data (celltypes annotation) path. |
-| **lr_file** | The final results of LR pairs. |
-| **gene** | The specific target gene name  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
-| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
+| **path** | Path of the feature data generated in the previous steps |
+| **save** | Save path of the generated data|
 
-Visualization of results:
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arankchange.png" alt="Editor" width="500">
-</div>
 
-===========================================================================
 
 
 
@@ -147,25 +117,15 @@ Visualization of results:
 
 # Contributing
 
-Jiboya Xuliwen ..
+All authors were involved in the conceptualization of the proposed method. LWX and SLP conceived and supervised
+the project. BYJ and HTZ designed the study and developed the approach. BYJ and HTZ implemented and applied the method to microbial data. BYJ and YJC
+collected the data. BYJ and HTZ analyzed the results. LWX and SLP contributed to the review of the manuscript before submission for publication. All authors read and approved the final manuscript.
 
-# Cite
-<p align="center">
-  <a href="https://clustrmaps.com/site/1bpq2">
-     <img width="200"  src="https://clustrmaps.com/map_v2.png?cl=ffffff&w=268&t=m&d=4hIDPHzBcvyZcFn8iDMpEM-PyYTzzqGtngzRP7_HkNs" />
-   </a>
-</p>
-
-<p align="center">
-  <a href="#">
-     <img src="https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjiboyalab%2FscDecipher&labelColor=%233499cc&countColor=%2370c168" />
-   </a>
-</p>
 
 
 # Contacts
-If you have any questions or comments, please feel free to email: byj@hnu.edu.cn.
+If you have any questions or comments, please feel free to email: byj@hnu.edu.cn, slpeng@hnu.edu.cn.
 
 # License
 
-[MIT ? Richard McRichface.](../LICENSE)
+[MIT Richard McRichface.](../LICENSE)
