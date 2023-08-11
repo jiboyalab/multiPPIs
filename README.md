@@ -102,12 +102,7 @@ python -m openne --model deepwalk --dataset ./data/AllNodeEdge.csv --num-paths 1
 ```
 python ./src/training.py --path ./data/ --save ./data/ && python ./src/roc_plot.py && python ./src/pr_plot.py
 ```
-**Arguments**:
 
-| **Arguments** | **Detail** |
-| --- | --- |
-| **path** | Path of the feature data generated in the previous steps |
-| **save** | Save path of the generated data|
 
 
 
