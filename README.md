@@ -52,7 +52,7 @@ Our proposed model is tested to work under:
 | MPmiRTarBaseMiProtein5.csv| MiRNA-protein associations obtained from miRTarBase: update 2018 database| 
 | LPLncRNA2TargetLncProtein3.csv|  LncRNA-protein associations obtained from LncRNA2Target v2.0 database| 
 | PPI.csv| Protein-protein interactions obtained from STRING database for model training and prediction| 
-
+| AllProteinSequence.csv| Protein sequence feature| 
 
 # Quick start
 To reproduce our results:
