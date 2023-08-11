@@ -4,7 +4,10 @@
 
 [![license](https://img.shields.io/badge/python_-3.8.0_-blue)](https://www.python.org/)
 [![license](https://img.shields.io/badge/torch_-1.12.0_-blue)](https://pytorch.org/)
-
+[![license](https://img.shields.io/badge/networkx_-2.8.8_-blue)](https://networkx.org/)
+[![license](https://img.shields.io/badge/openne_pytorch_-1.0.0_-blue)](https://github.com/thunlp/OpenNE/tree/pytorch)
+[![license](https://img.shields.io/badge/scikit_learn_-1.2.0_-blue)](https://scikit-learn.org/)
+[![license](https://img.shields.io/badge/numpy_-1.23.5_-blue)](https://numpy.org/)
 
 The prediction of potential protein-protein interactions (PPIs) is a critical step in decoding diseases and understanding cellular mechanisms. Traditional biological experiments have identified plenty of potential PPIs in recent years, but this problem is still far from being solved. Hence, there is urgent to develop computational models with good performance and high efficiency to predict potential PPIs. In this study, we propose a novel computational model to predict potential protein-protein interactions based on the physicochemical features of protein sequences and multi-source associations with other biomolecules (drugs, miRNAs, lncRNAs, and diseases) of proteins. More specifically, we first extract the protein sequence features by utilizing the auto covariance (AC) method according to the physicochemical properties of amino acids. Second, a multi-source association network is built through the integration of the known associations involving miRNAs, proteins, lncRNAs, drugs, and diseases. Subsequently, the graph representation learning method, DeepWalk, is adopted to extract the multi-source association information of proteins with other biomolecules. In this way, the known PPI pairs are depicted as a concatenation of the protein sequence and the multi-source association features of proteins. Finally, the Random Forest classifier and corresponding optimal parameters are employed for training and prediction. As a result, our model proposed showcased an average 86.03\% prediction accuracy, coupled with a sensitivity of 82.69\%, and an AUC of 93.03\% under 5-fold cross-validation. The experimental results suggest that the proposed model has a good prediction performance and provides valuable insights into the field of potential protein-protein interactions prediction. The schematic diagram of our proposed method is shown as follows:
 
@@ -13,34 +16,42 @@ The prediction of potential protein-protein interactions (PPIs) is a critical st
 
 
 
-## Table of Contents
+# Table of Contents
 
 - [Installation](#installation)
+- [Data description](#data-description)
 - [Quick start](#quick-start)
 - [Contributing](#contributing)
-- [Cite](#cite)
 - [Contacts](#contacts)
 - [License](#license)
 
 
-## Installation
+# Installation
 
-scDecipher is tested to work under:
+Our proposed model is tested to work under:
 
 ```
 * Python 3.8.0
 * Torch 1.12.0
 * Networkx 2.8.8
+* OpenNE-PyTorch 1.0.0
 * Scikit-learn 1.2.0
-* OpenNE-PyTorch 4.2.2
 * Numpy 1.23.5
 * Other basic python toolkits
 ```
-### Installation of other dependencies
-* Install [CellPhoneDB v3](https://github.com/ventolab/CellphoneDB) using ` pip install cellphonedb ` if you encounter any issue. 
-* Install [CellChat v1.6.0](https://github.com/sqjin/CellChat/tree/master) using ` devtools::install_github("sqjin/CellChat") ` in the R environment if you encounter any issue.
-* Install [NicheNet v1.1.0](https://github.com/saeyslab/nichenetr) using ` devtools::install_github("saeyslab/nichenetr") ` in the R environment if you encounter any issue.
-* Install [ICELLNET](https://github.com/soumelis-lab/ICELLNET) using ` install_github("soumelis-lab/ICELLNET",ref="master", subdir="icellnet") ` in the R environment if you encounter any issue.
+# Data description
+
+| File name  | Description |
+| ------------- | ------------- |
+| MDCuiMiDisease.csv  | MiRNA-disease associations obtained from HMDD v3.0 database |
+| DPDrugBankDrugProtein5.csv  | Drug-protein associations obtained from DrugBank v5.0 database  |
+| LMSNPLncMi.csv  | MiRNA-lncRNA associations obtained from lncRNASNP2 database  |
+| LDAllLncDisease.csv| LncRNA-disease associations obtained from lncRNASNP2 and LncRNADisease database  |
+| DrugDiseaseDrugDisease.csv| Drug-disease associations obtained from CTD:update 2019 database| 
+| PDDisGeNETProteinDisease20.csv|  Protein-disease associations obtained from DisGeNET database| 
+| MPmiRTarBaseMiProtein5.csv| MiRNA-protein associations obtained from miRTarBase: update 2018 database| 
+| LPLncRNA2TargetLncProtein3.csv|  LncRNA-protein associations obtained from LncRNA2Target v2.0 database| 
+| PPI.csv| Protein-protein interactions obtained from STRING database for model training and prediction| 
 
 
 # Quick start
