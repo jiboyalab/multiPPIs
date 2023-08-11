@@ -21,7 +21,7 @@ from sklearn.metrics import classification_report
 
 def ReadMyCsv(SaveList, fileName):
     csv_reader = csv.reader(open(fileName))
-    for row in csv_reader:  # 把每个rna疾病对加入OriginalData，注意表头
+    for row in csv_reader:  
         SaveList.append(row)
     return
 
@@ -30,7 +30,7 @@ def ReadMyCsv2(SaveList, fileName):
     for row in csv_reader:
         counter = 0
         while counter < len(row):
-            row[counter] = int(row[counter])      # 转换数据类型
+            row[counter] = int(row[counter])     
             counter = counter + 1
         SaveList.append(row)
     return
@@ -40,7 +40,7 @@ def ReadMyCsv3(SaveList, fileName):
     for row in csv_reader:
         counter = 0
         while counter < len(row):
-            row[counter] = float(row[counter])      # 转换数据类型
+            row[counter] = float(row[counter])    
             counter = counter + 1
         SaveList.append(row)
     return
@@ -64,7 +64,7 @@ def GenerateLabel(Sample):
     return Label
 
 def MyConfuse(SampleFeature, SampleLabel):
-    # 打乱数据集顺序
+   
     counter = 0
     R = []
     while counter < len(SampleFeature):
@@ -88,7 +88,7 @@ def MyEnlarge(x0, y0, width, height, x1, y1, times, mean_fpr, mean_tpr, thicknes
         import matplotlib.pyplot as plt
         import numpy as np
 
-        x1 = np.linspace(x0, x0, num=20)  # 生成列的横坐标，横坐标都是x0，纵坐标变化
+        x1 = np.linspace(x0, x0, num=20) 
         y1 = np.linspace(y0, y0, num=20)
         xk = np.linspace(x0, x0 + width, num=20)
         yk = np.linspace(y0, y0 + height, num=20)
@@ -107,18 +107,18 @@ def MyEnlarge(x0, y0, width, height, x1, y1, times, mean_fpr, mean_tpr, thicknes
         plt.plot(xk, ykn, color='k', linestyle=':', lw=1, alpha=1)  # 上
 
         return
-    # 画虚线框
+
     width2 = times * width
     height2 = times * height
     MyFrame(x0, y0, width, height)
     MyFrame(x1, y1, width2, height2)
 
-    # 连接两个虚线框
+
     xp = np.linspace(x0 + width, x1, num=20)
     yp = np.linspace(y0, y1 + height2, num=20)
     plt.plot(xp, yp, color='k', linestyle=':', lw=1, alpha=1)
 
-    # 小虚框内各点坐标
+
     XDottedLine = []
     YDottedLine = []
     counter = 0
