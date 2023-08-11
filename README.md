@@ -59,41 +59,28 @@ To reproduce our results:
 
 ## 1，Data preprocessing and construction of multi-source heterogeneous biomolecular networks
 ```
-python ./src/data_process.py --path ./data/  && python ./src/GetNodeEdgeNum.py && python ./src/GetObjectEdgeNum.py
+python ./src/data_process.py --path ./data/  && python ./src/GetNodeEdgeNum.py --save ./data/ && python ./src/GetObjectEdgeNum.py --save ./data/
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
 | **path** | Path of the assciation data among different biomoleculars|
+| **save** | Save path of the generated data|
 
 
 
-## 2，prioritize the dominant cell communication assmebly that regulates the target gene expression pattern
+## 2，Calculate the protein attribute features
 ```
-python ./src/tutorials1/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --gene CD8A --dca_rank_result ./output/CD8A_dca_rank_result.csv --ccc_ratio_result ./output/CD8A_ccc_ratio_result.csv
+python ./src/ACDencoder.py --path ./data/ --save ./data/
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **count** | Count matrix / normalized count matrix path. |
-| **meta** | Meta data (celltypes annotation) path. |
-| **lr_file** | The final results of LR pairs. |
-| **gene** | The specific target gene name  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
-| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
+| **path** | Path of the assciation data among different biomoleculars|
+| **save** | Save path of the generated data|
 
-Visualization of results:
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8arank.png" alt="Editor" width="500">
-</div>
-
-===========================================================================
-
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/cd8adeltae.png" alt="Editor" width="400">
-</div>
 
 ## 3，prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
 ```
