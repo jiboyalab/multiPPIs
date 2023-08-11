@@ -20,7 +20,7 @@ def StorFile(data, fileName):
         writer.writerows(data)
     return
 
-def AllNodeEdgeAttribute(data_path):
+def AllNodeEdgeAttribute(data_path,save_path):
 	
     LDAllLncDisease = []
     ReadMyCsv(LDAllLncDisease, data_path+"LDAllLncDisease.csv")
@@ -79,7 +79,7 @@ def AllNodeEdgeAttribute(data_path):
     # AllEdge.extend(PPI)
     print(len(AllEdge))
     print(AllEdge[0])
-    StorFile(AllEdge, data_path+'AllEdge.csv')
+    StorFile(AllEdge, save_path+'AllEdge.csv')
 
 
     
@@ -92,8 +92,12 @@ if __name__ == "__main__":
     formatter_class=argparse.ArgumentDefaultsHelpFormatter)
 
     parser.add_argument('--path', type=str, default='')
+    parser.add_argument('--save', type=str, default='')
     args = parser.parse_args()
     data_path=args.path
+    save_path=args.save
     if not os.path.exists(data_path):
        os.system('mkdir '+data_path)
-    AllNodeEdgeAttribute(data_path)
+    if not os.path.exists(save_path):
+       os.system('mkdir '+save_path)
+    AllNodeEdgeAttribute(data_path,save_path)
