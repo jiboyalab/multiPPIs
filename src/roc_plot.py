@@ -20,10 +20,10 @@ from itertools import cycle
 from sklearn.model_selection import KFold,LeaveOneOut,LeavePOut,ShuffleSplit
 
 
-# 定义函数
+
 def ReadMyCsv(SaveList, fileName):
     csv_reader = csv.reader(open(fileName))
-    for row in csv_reader:  # 把每个rna疾病对加入OriginalData，注意表头
+    for row in csv_reader:  
         for i in range(len(row)):
             row[i] = float(row[i])
         SaveList.append(row)
@@ -40,7 +40,7 @@ def MyEnlarge(x0, y0, width, height, x1, y1, times, mean_fpr, mean_tpr, thicknes
         import matplotlib.pyplot as plt
         import numpy as np
 
-        x1 = np.linspace(x0, x0, num=20)  # 生成列的横坐标，横坐标都是x0，纵坐标变化
+        x1 = np.linspace(x0, x0, num=20)  
         y1 = np.linspace(y0, y0, num=20)
         xk = np.linspace(x0, x0 + width, num=20)
         yk = np.linspace(y0, y0 + height, num=20)
@@ -59,18 +59,18 @@ def MyEnlarge(x0, y0, width, height, x1, y1, times, mean_fpr, mean_tpr, thicknes
         plt.plot(xk, ykn, color='k', linestyle=':', lw=1, alpha=1)  # 上
 
         return
-    # 画虚线框
+
     width2 = times * width
     height2 = times * height
     MyFrame(x0, y0, width, height)
     MyFrame(x1, y1, width2, height2)
 
-    # 连接两个虚线框
+
     xp = np.linspace(x0 + width, x1, num=20)
     yp = np.linspace(y0, y1 + height2, num=20)
     plt.plot(xp, yp, color='k', linestyle=':', lw=1, alpha=1)
 
-    # 小虚框内各点坐标
+
     XDottedLine = []
     YDottedLine = []
     counter = 0
@@ -80,8 +80,7 @@ def MyEnlarge(x0, y0, width, height, x1, y1, times, mean_fpr, mean_tpr, thicknes
             YDottedLine.append(mean_tpr[counter])
         counter = counter + 1
 
-    # 画虚线框内的点
-    # 把小虚框内的任一点减去小虚框左下角点生成相对坐标，再乘以倍数（4）加大虚框左下角点
+
     counter = 0
     while counter < len(XDottedLine):
         XDottedLine[counter] = (XDottedLine[counter] - x0) * times + x1
@@ -107,7 +106,7 @@ def MyConfusionMatrix(y_real,y_predict):
     Spec = TN / (TN + FP)
     Prec = TP / (TP + FP)
     MCC = (TP * TN - FP * FN) / math.sqrt((TP + FP) * (TP + FN) * (TN + FP) * (TN + FN))
-    # 分母可能出现0，需要讨论待续
+
     print('Acc:', round(Acc, 4))
     print('Sen:', round(Sen, 4))
     print('Spec:', round(Spec, 4))
@@ -170,7 +169,7 @@ def MyStd(result):
         counter = counter + 1
     result.append(MeanList)
     result.append(StdList)
-    # 换算成百分比制
+
     counter = 0
     while counter < len(result):
         counter1 = 0
@@ -186,7 +185,6 @@ mean_fpr = np.linspace(0, 1, 1000)
 i = 0
 colorlist = ['red', 'gold', 'purple', 'green', 'blue', 'black']
 
-# 用于保存混淆矩阵
 AllResult = []
 
 counter0 = 0
@@ -210,9 +208,9 @@ while counter0 < 5:
         PredictionProb.append(RealAndPredictionProb[counter][1])
         counter = counter + 1
 
-    # 画图
+
     fpr, tpr, thresholds = roc_curve(Real,PredictionProb)
-    # # 增加零点
+
     fpr = fpr.tolist()
     tpr = tpr.tolist()
     fpr.insert(0, 0)
@@ -227,7 +225,7 @@ while counter0 < 5:
     #                   label='fold %d (AUC = %0.4f)' % (i, roc_auc))
     # MyEnlarge(0, 0.7, 0.25, 0.25, 0.5, 0, 2, mean_fpr, tprs[i], 1.5, colorlist[i])
 
-    # 混淆矩阵
+
     Result = MyConfusionMatrix(Real, Prediction)  #
     AllResult.append(Result)
     AllResult[i].append(roc_auc)
@@ -275,7 +273,7 @@ plt.ylabel('True Positive Rate',fontsize=13)
 plt.legend(bbox_to_anchor=(0.97, 0.465), fontsize='large')
 plt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')
 # plt.grid(linestyle='-')
-# # 保存图片
+
 # plt.savefig('ROC-5fold.svg')
 # plt.savefig('ROC-5fold.tif')
 # plt.show()
