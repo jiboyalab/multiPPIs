@@ -57,17 +57,15 @@ Our proposed model is tested to work under:
 # Quick start
 To reproduce our results:
 
-## 1，infer ligand–receptor (L-R) pairs from single-cell RNA sequencing data
+## 1，Data preprocessing and construction of multi-source heterogeneous biomolecular networks
 ```
-cellphonedb method statistical_analysis ./data/RCC_scRNA_P76_metadata.txt ./data/RCC_scRNA_P76_matrix.txt --counts-data=gene_name --threads 100 --output-path ./output/
+python ./src/data_process.py --path ./data/
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **counts-data** | [ensembl or gene_name or hgnc_symbol] |
-| **threads** | Max of threads to process the data. |
-| **output-path** | Directory where the results will be allocated (the directory must exist). |
+| **path** | Path of the assciation data among different biomoleculars|
 
 ```
 Rscript ./tools/run_cellchat.R --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt  --output ./output/
