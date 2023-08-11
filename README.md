@@ -82,26 +82,21 @@ python ./src/ACDencoder.py --path ./data/ --save ./data/
 | **save** | Save path of the generated data|
 
 
-## 3，prioritize the dominant cell communication assmebly that regulates the key factors in specific cell type
+## 3，Calculate the protein graph features
 ```
-python ./src/tutorials2/main.py --count ./data/RCC_scRNA_P76_matrix.txt --meta ./data/RCC_scRNA_P76_metadata.txt --lr_file ./output/final_lr.csv --gene FOLR2 --cell_type TAM --dca_rank_result ./output/FOLR2_dca_rank_result.csv --ccc_ratio_result ./output/FOLR2_ccc_ratio_result.csv
+python -m openne --model deepwalk --dataset ./data/AllNodeEdge.csv --num-paths 10 --path-length 80 --window 10
+
 ```
 **Arguments**:
 
 | **Arguments** | **Detail** |
 | --- | --- |
-| **count** | Count matrix / normalized count matrix path. |
-| **meta** | Meta data (celltypes annotation) path. |
-| **lr_file** | The final results of LR pairs. |
-| **gene** | The specific target gene name.  |
-| **cell_type** | The specific cell type (TAM:tumor-associated macrophages).  |
-| **dca_rank_result** | The result of prioritize the dominant cell communication assmebly that regulates the target gene expression pattern. |
-| **ccc_ratio_result** | The result of ratio of different cell types affected by cellular communication. |
+| **dataset** | Count matrix / normalized count matrix path. |
+| **num-paths** | Number of random walks that starts at each node. |
+| **path-length** | Length of random walk started at each node. |
+| **window** | Window size of skip-gram model.  |
 
-Visualization of results:
-<div align="center">
-  <img src="https://github.com/jiboyalab/scDecipher/blob/main/IMG/folr2tam.png" alt="Editor" width="500">
-</div>
+
 
 ## 4，prioritize the dominant cell communication assmebly that affected functional states of malignant cells
 ```
