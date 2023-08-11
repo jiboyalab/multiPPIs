@@ -59,7 +59,7 @@ To reproduce our results:
 
 ## 1，Data preprocessing and construction of multi-source heterogeneous biomolecular networks
 ```
-python ./src/data_process.py --path ./data/
+python ./src/data_process.py --path ./data/  && python ./src/GetNodeEdgeNum.py && python ./src/GetObjectEdgeNum.py
 ```
 **Arguments**:
 
